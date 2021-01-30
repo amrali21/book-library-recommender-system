@@ -1,0 +1,1 @@
+ajax rating call fires twice which is a problem.

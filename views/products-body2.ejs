@@ -1,0 +1,34 @@
+</div>
+<div class="row mt-5">
+    <div class="col text-center">
+        <div class="block-27">
+            <ul>
+                <% let current_page_number = parseInt(page_number, 10) %>
+                <% if (current_page_number > 1 ){  %>
+                <li><a href= <%= 'http://localhost:3000/products/'+ (current_page_number-1) %> >&lt;</a></li> <% } %>
+                <% for(let page_number = 1 ; page_number <= max_pages_count ; page_number++ ) { %>
+                <li <% if (current_page_number == page_number){ %> class="active" <% } %>><a href="http://localhost:3000/products/<%= page_number %>"><%= page_number %></a></li>
+                <% } %>
+                <% if (current_page_number < max_pages_count ){  %>
+                <li><a href=<%= 'http://localhost:3000/products/' + (current_page_number+1) %>>&gt;</a></li> <% } %>
+            </ul>
+        </div>
+    </div>
+</div>
+</div>
+<div class="col-md-3">
+    <div class="sidebar-box ftco-animate">
+        <div class="categories">
+            <h3>Book Gategories</h3>
+            <ul class="p-0">
+                <li><a href="http://localhost:3000/products/1">ALL Books</a></li>
+                <% for(var no_of_elements = 0; no_of_elements <genres.length ; no_of_elements++ ) { %>
+                <li><a href="http://localhost:3000/Genres/<%= genres[no_of_elements]%>"><%= genres[no_of_elements]  %></a></li>
+                <% } %>
+            </ul>
+        </div>
+    </div>
+</div>
+</div>
+</div>
+</section>

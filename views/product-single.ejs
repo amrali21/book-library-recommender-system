@@ -1,0 +1,84 @@
+<%- include('./includes/header.ejs') %>
+
+<!-- css for this page only (star rating)-->
+<link rel="stylesheet" href="/views/resources/css/product-single.css">
+
+    <section class="ftco-section">
+
+    	<div class="container">
+    		<div class="row">
+
+
+    			<div class="col-lg-3 mb-5 ftco-animate">
+            <img src="<%= books[0].Image_URL  %>" class="img-fluid" alt="Colorlib Template">
+    				<!-- <a href="" class="image-popup prod-img-bg"><img src="<%= books[0].Image_URL  %>" class="img-fluid" alt="Colorlib Template"></a> -->
+            <% if (isAuthenticated) { %>
+            <br>  <span class = "mt-2">rate this book</span>
+            <br>
+            <!-- <form action="/book="POST">      <!-- visitor star rating --> 
+            <fieldset>
+            <span class="star-cb-group">
+            <input type="radio" class="rate" id="rating-5" name="rating" value="5"  /> <!-- checked="checked" -->
+            <label for="rating-5">5</label>
+            <input type="radio" class="rate" id="rating-4" name="rating" value="4"  />
+            <label for="rating-4">4</label>
+            <input type="radio" class="rate" id="rating-3" name="rating" value="3"  />
+            <label for="rating-3">3</label>
+            <input type="radio" class="rate" id="rating-2" name="rating" value="2" />
+            <label for="rating-2">2</label>
+            <input type="radio" class="rate" id="rating-1" name="rating" value="1"  />
+            <label for="rating-1">1</label>
+            <input type="radio"  id="rating-0" name="rating" value="0" class="star-cb-clear" />
+            <label for="rating-0">0</label>
+            </span>
+            <input type="text" name="recommended_books_ids" value= "<%= books[1].book_id %>,<%= books[2].book_id %>,<%= books[3].book_id %>,<%= books[4].book_id %>,<%= books[5].book_id %>,<%= books[6].book_id %>" hidden>
+            </fieldset>
+            <!-- </form> -->
+            <% } %>
+          </div>
+
+    			<div class="col-lg-9 product-details  ftco-animate">
+            <h2 class = "book-title">
+              <%= books[0].Book_Title  %>
+            </h2>
+
+            <span class = "book-author"> by <%= books[0].Book_Author %></span>       <br>
+
+
+            <p class="star_rating">
+                      <span id = "text-rating"><%= books[0].Rating %></span>      <!-- rating from database -->
+                      <a href="#" class="">★</a>
+                      <a href="#" class="">★</a>
+                      <a href="#" class="">★</a>
+                      <a href="#" class="">★</a>
+                      <a href="#" class="">★</a>
+                  </p>
+
+            <p>
+              <%= books[0].Description %>
+             </p><br>
+
+             <p>
+             ISBN: <%= books[0].ISBN %> <br>
+             Genre: <%= books[0].Genres %> <br>
+             Language Code: <%= books[0].Language_Code %>     <br>
+             year: <%= books[0].Year_Of_Publication %>    <br>
+            </p> <br>
+
+    			</div>
+    		</div>
+
+        <div class = "row">
+
+ <%- include('./includes/slide_menu.ejs')  %>
+
+        </div>
+    	</div>
+    </section>
+
+<%= bookid = books[0].book_id %>
+  <!-- javascript for this page only (star rating)-->
+  <%- include('./resources/js/product-single.ejs') %>
+  <!-- <script src="/views/resources/js/product-single.js"></script> -->
+
+  <%- include('./includes/footer.ejs') %>

@@ -1,0 +1,75 @@
+<%- include('./includes/header.ejs') %>
+<% if (isAuthenticated && is_admin==1) { %>
+<div class="add-new-book">
+      <form action="/add-new-book-to-database" method="POST">
+          
+        <div class="banner">
+          <h1>Add New Book To Database</h1>
+        </div>
+
+        <div class="item">
+          <p>ISBN</p>
+          <input type="number" name="ISBN" placeholder="International Standard Book Number" required >
+          <i class="fa fa-list-ol" aria-hidden="true"></i>
+        </div>
+          
+        <div class="item">
+          <p>Book Title</p>
+          <input type="text" name="Book_Title" required>
+          <i class="fa fa-book" aria-hidden="true"></i>
+        </div>
+        
+        <div class="item">
+          <p>Author</p>
+          <input type="text" name="Book_Author" required>
+          <i class="fa fa-user" aria-hidden="true"></i>
+        </div>
+        
+        <div class="item">
+          <p>Language Code</p>
+          <input type="text" name="Language_Code" placeholder="For example 'eng' for english" required>
+          <i class="fa fa-language" aria-hidden="true"></i>
+        </div>
+        
+        <div class="item">
+          <p>Year Of Publisher</p>
+          <input type="number" name="Year_Of_Publication" required>
+          <i class="fa fa-calendar" aria-hidden="true"></i>
+        </div>
+        
+        <div class="item">
+          <p>Cover Image URL</p>
+          <input type="input" name="Image_URL" required>
+          <i class="fa fa-link" aria-hidden="true"></i>
+        </div>
+        
+        <div class="item">
+          <p>Rating</p>
+          <input type="number" name="Rating" placeholder="A Number in range 1:5" required>
+          <i class="fa fa-star" aria-hidden="true"></i>
+        </div>
+        
+        <div class="item">
+          <select name="Genres" required>
+            <option value="">Genres</option>
+            <% for(var no_of_elements = 0; no_of_elements <genres.length ; no_of_elements++ ) { %>
+            <option value= <%= genres[no_of_elements] %> > <%= genres[no_of_elements] %> </option>
+            <% } %>
+          </select>
+        </div>
+        
+        <div class="item">
+          <p>Description</p>
+          <textarea rows="6" name="Description" required></textarea>
+        </div>
+          
+        <div class="btn-block">
+          <button type="submit" >Add Book</button>
+        </div>
+          
+      </form>
+</div>
+<% } else { %>
+  <h1 class="text-center"><b>Admins Only Can Access This Page Content</b></h1>
+<% } %>
+<%- include('./includes/footer.ejs') %>

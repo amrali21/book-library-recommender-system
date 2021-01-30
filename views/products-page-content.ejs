@@ -1,0 +1,33 @@
+<%if(no_of_books==0) { %>
+
+    <b> Sorry the Genre or Book you looking for doesn't exist, Please give us a feedback by Contact us with help of details
+        provided in About page </b>
+
+<% } else { %>
+
+    <% for(let no_of_elements = 0 ; no_of_elements < no_of_books ; no_of_elements++ ) { %>
+        <% if (no_of_elements < no_of_books  ) {  %>
+            <div class="col-md-3 d-flex">
+                <div class="product ftco-animate">
+                    <div class="img d-flex align-items-center justify-content-center"
+                        style="background-image: url( <%= books[0 + no_of_elements].Image_URL  %> );">
+                        <div class="desc">
+                            <p class="meta-prod d-flex">
+                               <a href="http://localhost:3000/book/<%= books[0 + no_of_elements].book_id %>" class="d-flex align-items-center justify-content-center"><span
+                                        class="flaticon-visibility"></span></a>
+                            </p>
+                        </div>
+                    </div>
+                    <div class="text text-center">
+                        <span class="category"> <%= books[0 + no_of_elements].Genres  %> </span>
+                        <h2> <%= books[0 + no_of_elements].Book_Title  %> </h2>
+                        <p class="mb-0"><span class="price">Rating: <%= books[0 + no_of_elements].Rating  %></span></p>
+                    </div>
+                </div>
+            </div>
+
+        <% } %>
+
+    <% } %>
+
+<% } %>

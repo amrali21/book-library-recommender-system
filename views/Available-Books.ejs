@@ -1,0 +1,23 @@
+<%- include('./includes/header.ejs') %>
+
+<!--This list of all available books in our website right now, we seek to provide more books in the future.As Beta Website You could use the book name from blew section to search for that book easily as we don't implement smart search yet-->
+   
+  <%if(no_of_books==0) { %>
+
+    <b> Sorry Database is not available right now due to maintanence </b>
+
+    <% } else { %>
+
+    <ul class="Available-Books">
+
+    <% for(let no_of_elements = 0 ; no_of_elements < no_of_books ; no_of_elements++ ) { %>
+      
+      <li><%= books[0 + no_of_elements].Book_Title  %></li>
+
+    <% } %>
+
+    </ul>
+
+    <% } %>
+
+<%- include('./includes/footer.ejs') %>

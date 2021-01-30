@@ -1,0 +1,49 @@
+
+<script>
+// DB STARS RATING
+
+var x = 4.3; // this comes from database.
+var count = Math.round(x);
+var stars = document.getElementsByClassName('star_rating')[0].getElementsByTagName('a');
+
+for(var i = 0; i < count; i++){
+
+  if(stars[i].className === "") {
+    stars[i].className += "on";
+  }
+}
+
+// STAR RATING EVENT HANDLER (SUBMIT RATING TO DATABASE)
+
+//1) SELECT ALL 'RATE' ELEMENTS
+
+const STARS = document.querySelectorAll('.rate');
+
+console.log("proct id" + <%= books[0].book_id %> ) // TESTTTTTTTTTTTTTTTTTTTTTTTTTT
+console.log("why this?????????????")
+
+for(const star of STARS){
+  console.log("starstarstar")
+star.addEventListener('click', star_click_event)
+
+}
+
+function star_click_event(){
+// i have book_id, user_id in req params. i only need rating number from font-end.
+console.log("CLICKEDDD")
+var rating = this.value;
+
+// AJAX Code
+const Http = new XMLHttpRequest();
+
+var book_id = <%= books[0].book_id %>;
+const url = '/book/' + book_id;
+Http.open("POST", url);
+Http.setRequestHeader("Content-Type", "application/json");
+
+Http.send(JSON.stringify({rating: rating}));
+
+}
+
+//2) ASSIGN EVENT LISTENERS TO ALL STARS USING A SINGLE LINE OF CODE
+</script>

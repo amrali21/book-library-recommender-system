@@ -1,0 +1,1 @@
+i changed username and is_admin i saved them into session variables. i passed those session variables to all routes instead of passing rows[0].is_admin and rows[0].user

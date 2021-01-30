@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title><%= PageTitle  %></title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="shortcut icon" href="/views/resources/images/Booker Logo.png" type="image/x-icon">
+    <link href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,200;0,300;0,400;0,500;0,700;0,800;1,200;1,300;1,400;1,500;1,700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.1/css/bootstrap-select.min.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">    <link rel="stylesheet" href="/views/resources/css/animate.css">
+    <link rel="stylesheet" href="/views/resources/css/owl.carousel.min.css">
+    <link rel="stylesheet" href="/views/resources/css/owl.theme.default.min.css">
+    <link rel="stylesheet" href="/views/resources/css/magnific-popup.css">
+    <link rel="stylesheet" href="/views/resources/css/flaticon.css">
+    <link rel="stylesheet" href="/views/resources/css/style.css">
+  </head>
+  <body>
+
+	<div class="wrap">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6 d-flex align-items-center">
+                    <p class="mb-0 phone pl-md-2">
+                        <a href="#" class="mr-2"><span class="fa fa-phone mr-1"></span> +2 0123456789</a>
+                        <a href="#"><span class="fa fa-paper-plane mr-1"></span> Booker@gmail.com</a>
+                    </p>
+                </div>
+                <div class="col-md-6 d-flex justify-content-md-end">
+                    <div class="social-media mr-4">
+                        <p class="mb-0 d-flex">
+                            <a href="https://www.facebook.com" class="d-flex align-items-center justify-content-center"><span
+                                    class="fa fa-facebook"><i class="sr-only">Facebook</i></span></a>
+                            <a href="https://twitter.com" class="d-flex align-items-center justify-content-center"><span
+                                    class="fa fa-twitter"><i class="sr-only">Twitter</i></span></a>
+                            <a href="https://www.instagram.com" class="d-flex align-items-center justify-content-center"><span
+                                    class="fa fa-instagram"><i class="sr-only">Instagram</i></span></a>
+                            <a href="https://www.pinterest.com" class="d-flex align-items-center justify-content-center"><span
+                                    class="fa fa-pinterest"><i class="sr-only">Pinterest</i></span></a>
+                            <a href="https://www.linkedin.com" class="d-flex align-items-center justify-content-center"><span
+                                    class="fa fa-linkedin"><i class="sr-only">LinkedIn</i></span></a>
+                        </p>
+                    </div>
+                    <% if (!isAuthenticated) { %>
+                    <div class="reg">
+                      <p class="mb-0"><a href="/" class="mr-2">Sign Up</a> <a href="/">Log In</a></p>
+                    </div>
+                    <% } else { %>
+                    <div class="reg">
+                      <p class="mb-0"><% if (is_admin==1) { %> <a href="/add-new-book" class="mr-2" title="Add a New Book"><i class="fa fa-plus-circle"
+                          aria-hidden="true"></i></a> <% } %><a href="#" class="mr-2"><%= name %></a> <a href="/logout">Logout</a></p>
+                    </div>
+                    <% } %>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
+        <div class="container">
+            <a class="navbar-brand" href="/index">booker</a>
+
+
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav"
+                aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="oi oi-menu"></span> Menu
+            </button>
+
+            <div class="collapse navbar-collapse" id="ftco-nav">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item"><a href="/index" class="nav-link">Home</a></li>
+                    <li class="nav-item"><a href="/products/1" class="nav-link">Browse</a></li>
+                    <li class="nav-item dropdown active">
+                        <a class="nav-link dropdown-toggle" href="#" id="dropdown04" data-toggle="dropdown"
+                            aria-haspopup="true" aria-expanded="false">Genres</a>
+                        <div class="dropdown-menu" aria-labelledby="dropdown04">
+                            <a class="dropdown-item" href="http://localhost:3000/Genres/Biographies">Biographies & Memoirs</a>
+                            <a class="dropdown-item" href="http://localhost:3000/Genres/Science Fiction">Science Fiction</a>
+                            <a class="dropdown-item" href="http://localhost:3000/Genres/Fantasy">Fantasy</a>
+                            <a class="dropdown-item" href="http://localhost:3000/Genres/children">children</a>
+                            <a class="dropdown-item" href="http://localhost:3000/products/1">View All</a>
+                        </div>
+                    </li>
+                    <li class="nav-item	"><a href="/Top-Rated" class="nav-link">Top Rated</a></li>
+                    <li class="nav-item"><a href="/contact" class="nav-link">Contact</a></li>
+                    <li class="nav-item"><a href="/about" class="nav-link">About</a></li>
+                    <li><form class="form-inline my-2 my-lg-0" method="GET">
+                    <input class="form-control mr-sm-2" type="search" placeholder="Search..." aria-label="Search" value="" oninput="javascript: form.action='/search/' + value ;">
+                    <span class="fa fa-search"></span>
+                    </form></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <!-- END nav -->  <!-- END nav -->
+    
+    <div class="hero-wrap" style="background-image: url('/views/resources/images/alfons-morales-YLSwjSy7stw-unsplash.jpg');" data-stellar-background-ratio="0.5">
+      <div class="overlay"></div>
+      <div class="container">
+        <div class="row no-gutters slider-text align-items-center justify-content-center">
+          <div class="col-md-8 ftco-animate d-flex align-items-end">
+          	<div class="text w-100 text-center">
+	            <h1 class="mb-4">Good <span>Book</span> for Good <span>Moments</span>.</h1>
+	            <p><a href="/products/1" class="btn btn-primary py-2 px-4">Shop Now</a> <a href="#" class="btn btn-white btn-outline-white py-2 px-4">Read more</a></p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <section class="ftco-intro">
+      <div class="container">
+        <div class="row no-gutters">
+          <div class="col-md-4 d-flex">
+            <div class="intro d-lg-flex w-100 ftco-animate">
+              <div class="icon">
+                <span class="flaticon-support"></span>
+              </div>
+              <div class="text">
+                <h2>24/7 Service</h2>
+                <p>Website is available at anytime</p>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4 d-flex">
+            <div class="intro color-1 d-lg-flex w-100 ftco-animate">
+              <div class="icon">
+                <span class="flaticon-cashback"></span>
+              </div>
+              <div class="text">
+                <h2>No payment</h2>
+                <p>As we don't sell books</p>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4 d-flex">
+            <div class="intro color-2 d-lg-flex w-100 ftco-animate">
+              <div class="icon">
+                <span class="flaticon-free-delivery"></span>
+              </div>
+              <div class="text">
+                <h2>Totaly Free</h2>
+                <p>Our website presents a free books Browsing without Ads</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="ftco-section ftco-no-pb">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-6 img img-3 d-flex justify-content-center align-items-center" style="background-image: url(/views/resources/images/about.jpg);">
+					</div>
+					<div class="col-md-6 wrap-about pl-md-5 ftco-animate py-5">
+	          <div class="heading-section">
+	          	<span class="subheading">Booker</span>
+	            <h2 class="mb-4">Desire Meets A New books</h2>
+
+	            <p>A small river named Duden flows by their place and supplies it with the necessary regelialia. It is a paradisematic country, in which roasted parts of sentences fly into your mouth.</p>
+	            <p>On her way she met a copy. The copy warned the Little Blind Text, that where it came from it would have been rewritten a thousand times and everything that was left from its origin would be the word "and" and the Little Blind Text should turn around and return to its own, safe country.</p>
+              <p class="year">
+                <strong class="number" data-number="2">0</strong>
+                <strong class="number" data-number="0">0</strong>
+                <strong class="number" data-number="2">0</strong>
+                <strong class="number" data-number="0">0</strong>
+                <span>First deployment Year</span>
+              </p>
+	          </div>
+
+					</div>
+				</div>
+			</div>
+		</section>
+
+  <br><br>
+  <h2 class="text-center">Genres.... And many many more</h2>
+
+		<section class="ftco-section ftco-no-pb">
+			<div class="container">
+				<div class="row">
+					<div class="col-lg-2">
+						<div class="sort w-100 text-center ftco-animate">
+							<div class="img" style="background-image: url(./views/resources/images/kind-1.jpg);"></div>
+							<h3>Science Fiction</h3>
+						</div>
+					</div>
+					<div class="col-lg-2 ">
+						<div class="sort w-100 text-center ftco-animate">
+							<div class="img" style="background-image: url(./views/resources/images/kind-2.jpg);"></div>
+							<h3>Fantasy</h3>
+						</div>
+					</div>
+					<div class="col-lg-2  ">
+						<div class="sort w-100 text-center ftco-animate">
+							<div class="img" style="background-image: url(./views/resources/images/kind-3.jpg);"></div>
+							<h3>Children</h3>
+						</div>
+					</div>
+					<div class="col-lg-2 ">
+						<div class="sort w-100 text-center ftco-animate">
+							<div class="img" style="background-image: url(./views/resources/images/kind-4.jpg);"></div>
+							<h3>History</h3>
+						</div>
+					</div>
+					<div class="col-lg-2 ">
+						<div class="sort w-100 text-center ftco-animate">
+							<div class="img" style="background-image: url(./views/resources/images/kind-5.jpg);"></div>
+							<h3>Literature & Fiction
+							</h3>
+						</div>
+					</div>
+					<div class="col-lg-2 col-md-4 ">
+						<div class="sort w-100 text-center ftco-animate">
+							<div class="img" style="background-image: url(./views/resources/images/kind-6.jpg);"></div>
+							<h3>Mystery (Thriller & Suspense)
+							</h3>
+						</div>
+					</div>
+			
+				</div>
+			</div>
+		</section>
+
+		
+  <section class="ftco-section testimony-section img" style="background-image: url(/views/resources/images/library.jpg);">
+    <div class="overlay"></div>
+    <div class="container">
+      <div class="row justify-content-center mb-5">
+        <div class="col-md-7 text-center heading-section heading-section-white ftco-animate">
+          <span class="subheading">Booker</span>
+          <h2 class="mb-3">Happy Clients</h2>
+        </div>
+      </div>
+      <div class="row ftco-animate">
+        <div class="col-md-12">
+          <div class="carousel-testimony owl-carousel ftco-owl">
+            <div class="item">
+              <div class="testimony-wrap py-4">
+                <div class="icon d-flex align-items-center justify-content-center"><span class="fa fa-quote-left"></span>
+                </div>
+                <div class="text">
+                  <p class="mb-4">Nothing consoles and comforts like certainty does.</p>
+                  <div class="d-flex align-items-center">
+                    <div class="user-img" style="background-image: url(/views/resources/images/Amit-Kalantri.jpg)"></div>
+                    <div class="pl-3">
+                      <p class="name">Amit Kalantri</p>
+                      <span class="position">Author</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="item">
+              <div class="testimony-wrap py-4">
+                <div class="icon d-flex align-items-center justify-content-center"><span class="fa fa-quote-left"></span>
+                </div>
+                <div class="text">
+                  <p class="mb-4">It’s not always what is said, but what is left on the plate, that tells
+                    the true story.</p>
+                  <div class="d-flex align-items-center">
+                    <div class="user-img" style="background-image: url(/views/resources/images/Sarah-Pullen.jpg)"></div>
+                    <div class="pl-3">
+                      <p class="name">Sarah Pullen</p>
+                      <span class="position">Author Of Healthy Profits</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="item">
+              <div class="testimony-wrap py-4">
+                <div class="icon d-flex align-items-center justify-content-center"><span class="fa fa-quote-left"></span>
+                </div>
+                <div class="text">
+                  <p class="mb-4">A customer talking about their experience with you is worth ten times
+                    that which you write or say about yourself.</p>
+                  <div class="d-flex align-items-center">
+                    <div class="user-img" style="background-image: url(/views/resources/images/David-J.Greer.jpg)"></div>
+                    <div class="pl-3">
+                      <p class="name">David J. Greer</p>
+                      <span class="position">Computer Science</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="item">
+              <div class="testimony-wrap py-4">
+                <div class="icon d-flex align-items-center justify-content-center"><span class="fa fa-quote-left"></span>
+                </div>
+                <div class="text">
+                  <p class="mb-4">Capitalize on charm by continually captivating your customer.</p>
+                  <div class="d-flex align-items-center">
+                    <div class="user-img" style="background-image: url(/views/resources/images/Ryan-Lilly.jpg)"></div>
+                    <div class="pl-3">
+                      <p class="name">Ryan Lilly</p>
+                      <span class="position">Businessman</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="item">
+              <div class="testimony-wrap py-4">
+                <div class="icon d-flex align-items-center justify-content-center"><span class="fa fa-quote-left"></span>
+                </div>
+                <div class="text">
+                  <p class="mb-4">Create wow moments for your prospects and watch you online sentiment
+                    increase</p>
+                  <div class="d-flex align-items-center">
+                    <div class="user-img" style="background-image: url(/views/resources/images/Stacey-Kehoe.jpg)"></div>
+                    <div class="pl-3">
+                      <p class="name">Stacey Kehoe</p>
+                      <span class="position">Author Of Get Online Book</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+<%- include('./includes/footer.ejs') %>

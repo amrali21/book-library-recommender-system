@@ -1,0 +1,95 @@
+
+/* DB stars rating */
+.star_rating {font-size:0; letter-spacing:-4px;}
+.star_rating a {
+font-size:24px;
+letter-spacing:0;
+display:inline-block;
+margin-left:2px;
+color: #888;
+text-decoration:none;
+}
+.star_rating a:first-child {margin-left:0;}
+.star_rating a.on {color:#1677cb;}
+
+#text-rating{
+  font-size: 20px;
+  letter-spacing: 1px;
+}
+
+
+/* VISITOR'S STAR RATING */
+
+
+.star-cb-group {
+/* remove inline-block whitespace */
+font-size: 0;
+/* flip the order so we can use the + and ~ combinators */
+unicode-bidi: bidi-override;
+direction: rtl;
+text-align: right;         /* OVERRIDE BODY'S CSS */
+/* the hidden clearer */
+}
+.star-cb-group * {
+font-size: 1.3rem;
+}
+.star-cb-group > input {
+display: none;
+}
+.star-cb-group > input + label {
+/* only enough room for the star */
+display: inline-block;
+overflow: hidden;
+text-indent: 9999px;
+width: 1em;
+white-space: nowrap;
+cursor: pointer;
+}
+.star-cb-group > input + label:before {
+display: inline-block;
+text-indent: -9999px;
+content: "☆";
+color: #888;
+}
+.star-cb-group > input:checked ~ label:before, .star-cb-group > input + label:hover ~ label:before, .star-cb-group > input + label:hover:before {
+content: "★";
+color: #1677cb;
+text-shadow: 0 0 1px #333;
+}
+.star-cb-group > .star-cb-clear + label {
+text-indent: -9999px;
+width: .5em;
+margin-left: -.5em;
+}
+.star-cb-group > .star-cb-clear + label:before {
+width: .5em;
+}
+.star-cb-group:hover > input + label:before {
+content: "☆";
+color: #a5a8af;
+text-shadow: none;
+}
+.star-cb-group:hover > input + label:hover ~ label:before, .star-cb-group:hover > input + label:hover:before {
+content: "★";
+color: #1677cb;
+text-shadow: 0 0 1px #333;
+}
+
+/* product details (description & author & etc) */
+
+.product-details p{
+	font-family: "Merriweather",-apple-system, BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
+	font-size: 20px;
+	color: black;
+	line-height: 1.5;
+}
+
+.book-title{
+	color: black;
+	font-family = "Merriweather";
+}
+
+.book-author{
+	color: black;
+	font-size: 20px;
+}

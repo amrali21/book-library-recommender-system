@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>ResCarousel</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"> -->
+
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Trirong:300,400,400i,500,600,700" />
+
+<style>
+/*resCarousel Css*/
+
+    body {
+        font-family: 'Trirong', serif;
+        /* background: #eee; */
+    }
+
+    .p0 {
+        padding: 0;
+    }
+
+    .resCarousel-inner .item {
+        /*border: 4px solid #eee;*/
+        vertical-align: top;
+        /* text-align: center; */
+    }
+
+    .resCarousel-inner .item .tile div,
+    .banner .item div {
+        display: table;
+        width: 100%;
+        min-height: 250px;
+        text-align: center;
+        /*box-shadow: 0 1px 1px rgba(0, 0, 0, .1);*/
+    }
+
+    .resCarousel-inner .item h1 {
+        display: table-cell;
+        vertical-align: middle;
+        color: white;
+    }
+
+    .banner .item div {
+        background: url('demoImg.jpg') center top no-repeat;
+
+        background-size: cover;
+        min-height: 550px;
+    }
+
+    .item .tile div {
+        /* background: url('demoImg.jpg') center center no-repeat; */
+        background-size: contain;
+        background-repeat: no-repeat;
+
+        /* background: center center no-repeat; */
+        /* background-size: cover; */
+        height: 200px;
+        color: white;
+    }
+
+    .item div h1 {
+        background: rgba(0, 0, 0, .4);
+    }
+
+
+.outt {
+    display: none;
+}
+
+.leftRs {                   /*this*/
+    position: absolute;
+    margin: auto;
+    top: 0;
+    bottom: 0;
+    z-index: 100;
+    left: -50px;              /* FIXES LEFT BUTTON */
+    width: 50px;
+    height: 50px;
+    box-shadow: 1px 2px 10px -1px rgba(0, 0, 0, .3);
+    border-radius: 999px;
+}
+
+.rightRs {                        /*this*/
+    position: absolute;
+    margin: auto;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 100;
+    width: 50px;
+    height: 50px;
+    box-shadow: 1px 2px 10px -1px rgba(0, 0, 0, .3);
+    border-radius: 999px;
+}
+
+.resCarousel {
+    /*float: left;
+    overflow: hidden;*/
+    width: 100%;
+    position: relative;
+}
+
+.resCarousel-inner {
+    overflow-x: hidden;
+    white-space: nowrap;
+    font-size: 0;
+    vertical-align: top;
+}
+
+.resCarousel-inner .item {
+    display: inline-block;
+    font-size: 14px;
+    white-space: initial;
+}
+
+
+/*banner*/
+
+.banner {
+    overflow: hidden !important;
+}
+
+
+/*tile css*/
+
+.resCarousel-inner .item .tile {      /*this*/
+    background: white;
+    /* box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12); */
+    margin: 5px;
+}
+
+
+/*animation*/
+
+.resCarousel[data-animator="lazy"] .item {
+    transition: .6s ease all;
+}
+
+@media (max-width: 767px) {
+    .resCarousel-inner {
+        overflow-x: auto;
+    }
+}
+
+
+/*resCarousel Css End*/
+
+</style>
+
+</head>
+
+<body>
+
+    <!--home-->
+    <div class="container p8">
+        <h4> we recommend..</h4>
+        <div class="resCarousel" data-items="2-4-4-4" data-slide="4" data-speed="900" data-animator="lazy">
+            <div class="resCarousel-inner">
+
+    <% for(let no_of_elements = 1 ; no_of_elements < no_of_books ; no_of_elements++ ) { %>
+                <div class="item">
+                    <div class="tile">
+                        <a href="http://localhost:3000/book/<%= books[no_of_elements].book_id %>"><div style="background-image: url(<%= books[no_of_elements].Image_URL  %>)">
+                        </div></a>
+                        <h4><%= books[no_of_elements].Book_Title  %></h4>
+                        <p><%= books[no_of_elements].Book_Author %></p>
+                    </div>
+                </div>
+    <% } %>
+            </div>
+            <button class='btn btn-secondary leftRs'><</button>
+            <button class='btn btn-secondary rightRs'>></button>
+        </div>
+    </div>
+
+    <hr>
+
+    <!-- <script src="js/resCarousel.js"></script> -->
+      <script>
+      //resCarousel
+
+
+          //ResCarouselCustom();
+          var pageRefresh = true;
+
+          function ResCarouselCustom() {
+              var items = $("#dItems").val(),
+                  slide = $("#dSlide").val(),
+                  speed = $("#dSpeed").val(),
+                  interval = $("#dInterval").val()
+
+              var itemsD = "data-items=\"" + items + "\"",
+                  slideD = "data-slide=\"" + slide + "\"",
+                  speedD = "data-speed=\"" + speed + "\"",
+                  intervalD = "data-interval=\"" + interval + "\"";
+
+
+              var atts = "";
+              atts += items != "" ? itemsD + " " : "";
+              atts += slide != "" ? slideD + " " : "";
+              atts += speed != "" ? speedD + " " : "";
+              atts += interval != "" ? intervalD + " " : ""
+
+              //console.log(atts);
+
+              var dat = "";
+              dat += '<h4 >' + atts + '</h4>'
+              dat += '<div class=\"resCarousel\" ' + atts + '>'
+              dat += '<div class="resCarousel-inner">'
+              for (var i = 1; i <= 14; i++) {
+                  dat += '<div class=\"item\"><div><h1>' + i + '</h1></div></div>'
+              }
+              dat += '</div>'
+              dat += '<button class=\'btn btn-default leftRs\'><i class=\"fa fa-fw fa-angle-left\"></i></button>'
+              dat += '<button class=\'btn btn-default rightRs\'><i class=\"fa fa-fw fa-angle-right\"></i></button>    </div>'
+              console.log(dat);
+              $("#customRes").html(null).append(dat);
+
+              if (!pageRefresh) {
+                  ResCarouselSize();
+              } else {
+                  pageRefresh = false;
+              }
+              //ResCarouselSlide();
+          }
+
+          $("#eventLoad").on('ResCarouselLoad', function() {
+              //console.log("triggered");
+              var dat = "";
+              var lenghtI = $(this).find(".item").length;
+              if (lenghtI <= 30) {
+                  for (var i = lenghtI; i <= lenghtI + 10; i++) {
+                      dat += '<div class="item"><div class="tile"><div><h1>' + (i + 1) + '</h1></div><h3>Title</h3><p>content</p></div></div>'
+                  }
+                  $(this).append(dat);
+              }
+          });
+
+
+      $(document).ready(function() { ResCarouselOnInit(); });
+
+      $(window).resize(function() {
+          var r = new Date();
+          setTimeout(function() {
+              ResCarouselResize(r);
+          }, 200);
+      });
+
+      function ResCarouselOnInit() {
+          ResCarouselSize();
+          $(document).on('click', '.leftRs, .rightRs', function() {
+              ResCarousel(this);
+          });
+          $(document).on("mouseenter", ".ResHover", function() {
+              $(this).addClass("ResHovered");
+          });
+
+          $(document).on("mouseleave", ".ResHover", function() {
+              $(this).removeClass("ResHovered");
+          });
+      }
+
+      // Rescarousel Auto Slide
+      function ResCarouselSlide(e) {
+          var thiss = $(e).find(".rightRs");
+          var dataInterval = $(e).attr('data-interval');
+          !isNaN(dataInterval) && $(e).addClass("ResHover") && setInterval(function() {
+              !(thiss.parent().hasClass("ResHovered")) && ResCarousel(thiss);
+          }, +(dataInterval));
+      }
+
+      function ResCarouselResize() {
+          function myfunction() {
+              console.log("resize Works");
+              //var r = $('body').width();
+              $('.resCarousel').each(function() {
+                  var divValue = $(this).attr('data-value');
+                  var itemWidth = $(this).find('.item').width();
+                  $(this).find(".resCarousel-inner").scrollLeft(divValue * itemWidth);
+                  //var itemsSplit = $(this).attr("data-items").split(',');
+                  //var it = r >= 1200 ? itemsSplit[3] : r >= 992 ? itemsSplit[2] : r >= 768 ? itemsSplit[1] : itemsSplit[0];
+                  //$(this).attr("data-itm", it);
+              });
+          }
+          //var ResTimeout = setTimeout(function() { myfunction() }, 3000);
+          //clearTimeout(ResTimeout);
+          //ResTimeout = setTimeout(function() { myfunction() }, 3000);
+          //console.log(ResTimeout);
+          myfunction();
+      }
+
+      //this function define the size of the items
+      function ResCarouselSize() {
+          var t0 = performance.now();
+
+          //    styleCollector0 = styleCollector1 = styleCollector2 = styleCollector3 = "";
+          $('.resCarousel').each(function(index) {
+              var itemsSplit = $(this).attr("data-items").split('-');
+              $(this).addClass("ResSlid" + index);
+
+              for (var i = 0; i < 4; i++) {
+                  if (i == 0) {
+                      var styleCollector0 = ".ResSlid" + index + " .item {width: " + 100 / itemsSplit[i] + "%}";
+                  } else if (i == 1) {
+                      var styleCollector1 = ".ResSlid" + index + " .item {width: " + 100 / itemsSplit[i] + "%}";
+                  } else if (i == 2) {
+                      var styleCollector2 = ".ResSlid" + index + " .item {width: " + 100 / itemsSplit[i] + "%}";
+                  } else if (i == 3) {
+                      var styleCollector3 = ".ResSlid" + index + " .item {width: " + 100 / itemsSplit[i] + "%}";
+                  }
+              }
+
+              $(this).attr("data-value", "0");
+              //var r = $('body').width();
+              //var it = r >= 1200 ? itemsSplit[3] : r >= 992 ? itemsSplit[2] : r >= 768 ? itemsSplit[1] : itemsSplit[0];
+              //$(this).attr("data-itm", it);
+
+              var styleCollector = "@media (max-width:767px){" + styleCollector0 + "}" +
+                  "@media (min-width:768px){" + styleCollector1 + "}" +
+                  "@media (min-width:992px){" + styleCollector2 + "}" +
+                  "@media (min-width:1200px){" + styleCollector3 + "}";
+              //$(this).append("<div class=\"ResStyleManager\"></div>")
+              $(this).find("style").remove();
+              $(this).append("<style>" + styleCollector + "</style>");
+              ResCarouselSlide(this);
+
+          });
+          //console.log(styleCollector);
+          //$("body").append("<div class=\"ResStyleManager\"></div>")
+          //$('.ResStyleManager').html(null).append("<style>" + styleCollector + "</style>");
+          var t1 = performance.now();
+          console.log('Took', (t1 - t0).toFixed(4), 'milliseconds to Size');
+      }
+
+      //this function used to move the items
+      function ResCarousel(Btn) {
+          //var t0 = performance.now();
+          var parent = $(Btn).parent(),
+              slide = +parent.attr("data-slide"),
+              itemsDiv = parent.find('.resCarousel-inner'),
+              //divValueq = +parent.attr('data-value'),
+              itemSpeed = +parent.attr("data-speed"),
+              itemLoad = +parent.attr("data-load"),
+              //animi = parent.attr("data-animator"),
+              translateXval = '',
+              currentSlide = "",
+              itemLenght = itemsDiv.find(".item").length,
+              itemWidth = itemsDiv.find('.item').outerWidth(),
+              dataItm = +Math.round(itemsDiv.outerWidth() / itemWidth),
+              cond = $(Btn).hasClass("leftRs"),
+              divValue = Math.round(itemsDiv.scrollLeft() / itemWidth);
+          //console.log(dataItm + "," + Math.abs(dataItmq));
+          //console.log(divValue + "," + divValueq);
+          //console.log(cond);
+          //console.log(typeof + parent.attr("data-slide"))
+          itemSpeed = !isNaN(itemSpeed) ? itemSpeed : 400;
+          slide = slide < dataItm ? slide : dataItm;
+
+          if (cond) {
+              currentSlide = divValue - slide;
+              translateXval = currentSlide * itemWidth;
+              var MoveSlide = currentSlide + slide;
+              //console.log(itemloop);
+              if (divValue == 0) {
+                  currentSlide = itemLenght - slide;
+                  translateXval = currentSlide * itemWidth;
+                  currentSlide = itemLenght - dataItm;
+                  itemSpeed = 400;
+                  //console.log(currentSlide + "," + translateXval);
+              } else if (slide >= MoveSlide) {
+                  currentSlide = translateXval = 0;
+              }
+          } else {
+              currentSlide = divValue + slide;
+              translateXval = currentSlide * itemWidth;
+              var MoveSlide = currentSlide + slide;
+
+              //console.log(itemLenght + "," + (MoveSlide + "," + slide + "," + dataItm));
+              //console.log(itemLenght + "," + (MoveSlide - slide + dataItm));
+              //console.log((divValue + dataItm) + "," + itemLenght);
+              if (divValue + dataItm == itemLenght) {
+                  currentSlide = translateXval = 0;
+                  itemSpeed = 400;
+              } else if (itemLenght <= (MoveSlide - slide + dataItm)) {
+                  currentSlide = itemLenght - slide;
+                  translateXval = currentSlide * itemWidth;
+                  currentSlide = itemLenght - dataItm;
+              }
+              // resCarouselAnimator(itemsDiv, currentSlide + 1, currentSlide + slide);
+          }
+          //console.log(slide + "," + itemWidth);
+          parent.attr("data-animator") == "lazy" && resCarouselAnimator(itemsDiv, cond ? 0 : 1, currentSlide + 1, currentSlide + dataItm, itemSpeed, (slide * itemWidth));
+          //console.log(itemsDiv.scrollLeft() + "," + translateXval)
+          //console.log(itemSpeed);
+          if (!isNaN(itemLoad)) {
+              itemLoad = itemLoad >= slide ? itemLoad : slide;
+              //console.log((itemLenght - itemLoad) <= currentSlide + dataItm);
+              //console.log((itemLenght - itemLoad) + " ," + (currentSlide + dataItm) + " ," + (itemLenght - dataItm));
+              (itemLenght - itemLoad) <= (currentSlide + dataItm) && ResCarouselLoad1(itemsDiv);
+          }
+          itemsDiv.animate({ scrollLeft: translateXval }, itemSpeed);
+          parent.attr("data-value", currentSlide);
+
+          //var t1 = performance.now();
+          //console.log('Took', (t1 - t0).toFixed(4), 'milliseconds to generate');
+      }
+
+
+      function ResCarouselLoad1(e) {
+          //console.log(e.attr("id"));
+          $("#" + e.attr("id")).trigger("ResCarouselLoad");
+      }
+
+      function resCarouselAnimator(parent, direction, start, end, speed, length) {
+          //console.log(parent + "," + start + "," + end);
+          var val = 5;
+          if (direction == 0) {
+              for (var i = start - 1; i < end + 1; i++) {
+                  val = val * 2;
+              }
+              val = -val;
+          }
+          //console.log(length);
+          //if (direction == 1) {
+          //    for (var i = start - 1; i < end + 1; i++) {
+          //        length = length / 2
+          //        console.log(length);
+          //    }
+          //    //val = val;
+          //}
+          //val = direction == 1 ? length : -length;
+
+          for (var i = start - 1; i < end; i++) {
+              val = direction == 0 ? val / 2 : val * 2;
+              //console.log(val);
+              //console.log(parent.find(".item").eq(i).find("h1").text());
+              parent.find(".item").eq(i).css("transform", "translateX(" + val + "px)");
+          }
+          setTimeout(function() {
+              parent.find(".item").attr("style", "");
+          }, speed - 70);
+      }
+
+      </script>
+</body>
+
+</html>
