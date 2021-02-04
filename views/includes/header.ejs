@@ -46,7 +46,7 @@
                                     class="fa fa-linkedin"><i class="sr-only">LinkedIn</i></span></a>
                         </p>
                     </div>
-                    <% if (!isAuthenticated) { %>
+                    <% if ( typeof isAuthenticated === 'undefined') { %>
                     <div class="reg">
                         <p class="mb-0"><a href="/" class="mr-2">Sign Up</a> <a href="/">Log In</a></p>
                     </div>

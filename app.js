@@ -2,7 +2,8 @@ const http = require("http");
 const path = require("path");
 const bodyParser = require("body-parser");
 const express = require("express");
-const pagesControl = require("./routes/pages");
+const pagesControl = require("./routes/pages - Copy").router;
+
 const db = require("./models/Database_Connection");
 const cookieSession = require('cookie-session');
 const bcrypt = require('bcryptjs');
@@ -27,6 +28,7 @@ app.use(pagesControl);
 
 app.use((req, res) =>
 {
+  console.log('route not found');
   res.status(404).render("404 page", { PageTitle: 'Page Not Found' });
 });
 
