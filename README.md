@@ -12,7 +12,7 @@ Check book rating dataset [here](https://www.kaggle.com/arashnic/book-recommenda
 # Demo
 
 [![IMAGE ALT TEXT HERE](
-https://img.youtube.com/vi/umTNKdxcNYo/default.jpg
+https://img.youtube.com/vi/umTNKdxcNYo/0.jpg
 )](https://www.youtube.com/watch?v=umTNKdxcNYo)
 
 
